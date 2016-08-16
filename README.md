@@ -1,2 +1,2 @@
-# wt-lab
-Web Technology Lab SEE (Semester VI)
+# Web Technology Lab
+Questions included in the doc.
