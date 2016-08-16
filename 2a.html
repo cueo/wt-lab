@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Encode Form</title>
+	<script type="text/javascript">
+		function codeAction()
+		{
+			var input = document.getElementById('code');
+			var form = document.getElementById('form');
+			form.action = '2b.html?text=' + input.value;
+		}
+	</script>
+</head>
+<body>
+	<form id="form" method="GET" target="right">
+		<label>Text <input id="code" type="text" name="code" onchange="codeAction()"></label>
+		<button type="submit">Submit</button>
+	</form>
+</body>
+</html>

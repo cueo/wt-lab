@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sine Wave</title>
+	<style type="text/css">
+		canvas
+		{
+			border: 1px solid black;
+		}
+	</style>
+	<script type="text/javascript">
+		function init()
+		{
+			resume = document.getElementById('resume');
+			can = document.getElementById('can');
+			ctx = can.getContext('2d');
+			x = 100;
+			y = 250;
+		}
+		function draw()
+		{
+			console.log(resume.id);
+			resume.disabled = false;
+			can.width = can.width;
+			ctx.beginPath();
+			ctx.strokeStyle = 'black';
+			ctx.moveTo(x, y);
+			ctx.lineTo(x, y-200);
+			ctx.moveTo(x, y);
+			ctx.lineTo(x, y+200);
+			ctx.moveTo(x, y);
+			ctx.lineTo(x+500, y);
+			ctx.moveTo(x, y);
+			ctx.stroke();
+			ctx.closePath();
+
+			sinx = x;
+			flag = setInterval(sine, 20);
+		}
+		function sine()
+		{
+			if(sinx <= x + 500)
+			{
+				siny = 100 * Math.sin(Math.PI * sinx / 50);
+			
+				ctx.strokeStyle = 'green';
+				ctx.lineTo(sinx, y-siny);
+				ctx.stroke();
+				
+				sinx += 1;
+				//setTimeout(sine, 20);	
+			}
+			else
+			{
+				clearInterval(flag);
+			}
+		}
+		function pause()
+		{
+			clearInterval(flag);
+		}
+		function resume()
+		{
+			flag = setInterval(sine, 20);
+		}
+		function stop()
+		{
+			pause();
+			resume.disabled = true;
+			sinx = x;
+			can.width = can.width;
+		}
+	</script>
+</head>
+<body onload="init()">
+	<canvas id="can" height="500" width="800"></canvas><br /><br />
+	<input onclick="draw()" type="button" value="Draw">
+	<input onclick="pause()" type="button" value="Pause">
+	<input onclick="resume()" type="button" value="Resume" id="resume">
+	<input onclick="stop()" type="button" value="Stop">
+</body>
+</html>

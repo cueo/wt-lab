@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Local storage</title>
+	<script>
+		function init()
+		{
+			color = document.getElementById("color");
+			font = document.getElementById("font");
+			footer = document.getElementById("footer");
+			para = document.getElementById("para");
+			foot = document.getElementById("foot");
+			document.body.style.backgroundColor = "ivory";
+			para.style.font="16px Arial";
+		}
+		function change()
+		{
+			localStorage["color"] = color.value;
+			document.body.style.backgroundColor = color.value;
+			localStorage["font"] = font.value;
+			para.style.font = font.value;
+			localStorage["footer"] = "&copy " + footer.value;
+			foot.innerHTML = "&copy " + footer.value;
+		}
+	</script>
+</head>
+<body onload="init()">
+	Change color: <input type="text" id="color" /><br><br>
+	Change font: <input type="text" id="font" /><br><br>
+	Change footer: <input type="text" id="footer" /><br><br>
+	<button onclick="change()" />DONE</button><br><br><br><br>
+	<p id="para">
+	This is the first page, folks! What's up?
+	How you doin'?
+	</p><br><br>
+	<footer id="foot" > &copy PESIT 2016 </footer>
+</body>
+</html>

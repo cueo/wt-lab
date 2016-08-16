@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Matrix</title>
+	<style type="text/css">
+		.inner
+		{
+			height: 30px;
+			width: 60px;
+			position: fixed;
+		}
+		.outer
+		{
+			height: 120px;
+			width: 240px;
+			position: fixed;
+		}
+	</style>
+	<script type="text/javascript">
+		function init()
+		{
+			var out = document.getElementById('out');
+			var rows = 4;
+			var columns = 4;
+			var columnOffset = out.offsetTop;
+			for(var row = 1; row <= rows; ++row)
+			{
+				var rowOffset = out.offsetLeft;
+				for(var column = 1; column <= columns; ++column)
+				{
+					var inner = document.getElementById(row + '' + column);
+					inner.style.left = rowOffset + 1 + 'px';
+					inner.style.top = columnOffset + 'px';
+					rowOffset += inner.offsetWidth;
+					inner.style.backgroundColor = 'rgb(' + parseInt(Math.random()*255) + ', ' + parseInt(Math.random()*255) + ', ' + parseInt(Math.random()*255) + ')';
+					inner.addEventListener('click', changeColor, false);
+					createTooltip(inner);
+					inner.addEventListener('mouseover', showTooltip, false);
+					inner.addEventListener('mouseout', hideTooltip, false);
+				}
+				columnOffset += inner.offsetHeight;
+			}
+		}
+
+		function changeColor(event)
+		{
+			//console.log(event.target);
+			var cell1 = event.target;
+			var id = cell1.id;
+			var int_id = parseInt(id);
+			var ten = parseInt(id / 10);
+			var unit = id % 10;
+			if(ten < 3)
+				ten += 2;
+			else
+				ten -= 2;
+			if(unit < 3)
+				unit += 2;
+			else
+				unit -= 2;
+			var new_id = ten + '' + unit;
+			console.log(id, new_id);
+			var cell2 = document.getElementById(new_id);
+			var temp = cell1.style.backgroundColor;
+			cell1.style.backgroundColor = cell2.style.backgroundColor;
+			cell2.style.backgroundColor = temp;
+		}
+		function createTooltip(cell)
+		{
+			var tt = document.createElement('div');
+			tt.id = cell.id + 't';
+			tt.style.width = 25 + 'px';
+			tt.style.height = 20 + 'px';
+			tt.style.border = '1px solid black';
+			tt.style.position = 'fixed';
+			tt.style.left = cell.offsetLeft + cell.offsetWidth + 2 + 'px';
+			tt.style.top = cell.offsetTop + 2 + 'px';
+			tt.innerHTML = cell.id;
+			tt.style.backgroundColor = '#ffffca';
+			tt.style.color = '#000023';
+			tt.style.font = '0.75em tahoma';
+			//tt.innerHTML = 'test';
+			cell.parentNode.parentNode.appendChild(tt);
+			tt.style.display = 'none';
+		}
+		function showTooltip()
+		{
+			var cell = event.target;
+			var tt = document.getElementById(cell.id + 't');
+			tt.style.display = 'block';
+		}
+		function hideTooltip()
+		{
+			var cell = event.target;
+			var tt = document.getElementById(cell.id + 't');
+			tt.style.display = 'none';
+		}
+	</script>
+</head>
+<body onload="init()">
+	<div class="outer" id="out">
+		<div class="inner" id="11"></div>
+		<div class="inner" id="12"></div>
+		<div class="inner" id="13"></div>
+		<div class="inner" id="14"></div>
+		<div class="inner" id="21"></div>
+		<div class="inner" id="22"></div>
+		<div class="inner" id="23"></div>
+		<div class="inner" id="24"></div>
+		<div class="inner" id="31"></div>
+		<div class="inner" id="32"></div>
+		<div class="inner" id="33"></div>
+		<div class="inner" id="34"></div>
+		<div class="inner" id="41"></div>
+		<div class="inner" id="42"></div>
+		<div class="inner" id="43"></div>
+		<div class="inner" id="44"></div>
+	</div>
+</body>
+</html>
