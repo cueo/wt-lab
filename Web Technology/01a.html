@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Shape Form</title>
+	<script type="text/javascript">
+		function shapeTarget()
+		{
+			var input = document.getElementById('shape');
+			var size = document.getElementById('size');
+			var form = document.getElementById('form');
+			if (input.value == 'triangle')
+				form.action = '1b-triangle.html?size=' + size.value;
+			else
+				form.action = '1b-square.html?size=' + size.value;
+		}
+	</script>
+</head>
+<body>
+	<form id="form" method="POST" target="right">
+		<label>Shape <input id="shape" type="text" name="shape" onchange="shapeTarget()"></label><br /><br />
+		<label>Size <input id="size" type="text" name="size" onchange="shapeTarget()"></label>
+		<button type="submit">Submit</button>
+	</form>
+</body>
+</html>

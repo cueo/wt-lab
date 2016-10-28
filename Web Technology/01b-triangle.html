@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Shape</title>
+	<script type="text/javascript">
+		function draw()
+		{
+			var size = document.URL.split('?')[1].split('=')[1]
+			size = parseInt(size); 
+			var n = size + 1;
+
+			var row = 0;
+			var col = 0;
+			var space = 0;
+
+			for(row = 1; row < n; row++)
+			{
+				for(space = 0; space < n - row; space++)
+					document.write('&nbsp;&nbsp;');
+				for(col = 1; col <= row; col++)
+				{
+					if(row == (n-1))
+					{
+						document.write('*&nbsp;&nbsp;');
+					}
+					else
+					{
+						if(col == 1 || col == row)
+							document.write('*&nbsp;&nbsp;');
+						else 
+							document.write('&nbsp;&nbsp;&nbsp;&nbsp;');
+					}
+				}
+				document.write('<br />');
+			}
+		}
+	</script>
+</head>
+<body onload="draw()" />
+</html>

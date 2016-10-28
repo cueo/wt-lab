@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+	<header>
+		<title>Context Menu</title>
+
+		<style type="text/css">
+
+		div#menu
+		{
+			padding: 10px 10px 10px 10px;
+			border-radius: 5px;
+			position: absolute;
+		}
+
+		div.inner
+		{
+			font: normal 14px Tahoma;
+		}
+
+		div.inner:hover  
+		{
+			background-color: rgb(100, 170, 255); 
+		}
+		</style>
+
+		<script>
+			function init()
+			{
+				document.addEventListener("contextmenu", showMenu, false); // fire showMenu() on right click
+				document.addEventListener("click", hideMenu, false); // fire hideMenu() when user clicks on another location
+
+				menu=document.getElementById("menu"); 	// grab dropdown...
+				menu.style.display="none"; 				// ...and hide it
+				
+				help=document.getElementById("help");	// grab help text...
+				help.style.display="none";				// ...and hide it too
+				//menu.style.backgroundColor="yellow";
+			}
+
+			function showMenu(event) 	// function to show dropdown
+			{
+				event.preventDefault();
+				menu.style.display="block"; // "block" is the keyword
+				menu.style.top=event.clientY+"px";
+				menu.style.left=event.clientX+"px";
+			}
+
+			function hideMenu(event)	// function to hide dropdown
+			{
+				menu.style.display="none";
+			}
+
+			function changeBg()	// change background
+			{
+				/* randomizing an rgb vector as the colour for the background wall */ 
+				document.body.style.background='rgb(' + parseInt(Math.random()*255)+", "+parseInt(Math.random()*255)+", "+parseInt(Math.random()*255)+")";
+			}
+
+			function showHelp()	// show help text
+			{
+				help.style.display="block";	// and now it can be seen
+
+				help.style.position="absolute";
+
+				/* positioning code */
+				help.style.left=((window.innerWidth - help.offsetWidth)/2)+"px";
+
+				help.style.top=((window.innerHeight - help.offsetHeight)/2)+"px";
+					
+			}
+
+			function hideHelp()	 // hide help text
+			{
+				help.style.display="none";
+			}
+		</script>
+	</header>
+
+	<body onload="init()">
+		<form method="POST" action="3.html">
+			<label>Username: <input type="text" /></label><br /><br />
+			<label>Password: <input type="password" /></label><br /><br />
+			<input type="submit" />
+		</form>
+		<div id="help">Here's some helpful text.</div>
+		<div id="menu" style="background-color: #eeeeee;">
+			<center><div class="inner" onclick="showHelp()">Show help</div><hr>
+			<div class="inner" onclick="hideHelp()">Hide help</div><hr>
+			<div class="inner" onclick="changeBg()">Change background</div><hr>
+			<div class="inner" onclick="window.close()">Exit</div>
+			</center>
+		</div>
+	</body>
+
+</html>

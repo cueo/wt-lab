@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HTML5 basics</title>
+
+<script type="text/javascript">
+	window.addEventListener("storage", change, false);
+	function change(event)
+	{
+		document.body.style.backgroundColor = localStorage["color"];
+		para.style.font = localStorage["font"];
+		foot.innerHTML = localStorage["footer"];
+	}
+</script>
+</head>
+<body>
+	<p id="para">
+	This is the second page, folks! What's up?
+	How you doin'?
+	</p><br><br>
+	<footer id="foot" > &copy PESIT 2016 </footer>
+</body>
+</html>

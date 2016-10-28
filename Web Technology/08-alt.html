@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Text Scroller</title>
+	<style type="text/css">
+		#text
+		{
+			font-family: tahoma;
+			position: fixed;
+		}
+	</style>
+	<script type="text/javascript">
+		function init()
+		{
+			text = document.getElementById('text');
+			hy = 3;
+			scrollDown();
+		}
+		function scrollDown()
+		{
+			console.log('down');
+			if(text.offsetTop >= window.innerHeight - text.offsetHeight)
+				scrollUp();
+			else
+			{
+				text.style.top = text.offsetTop + hy + 'px';
+				setTimeout(scrollDown, 10);
+			}
+		}
+		function scrollUp()
+		{
+			console.log('up');
+			if(text.offsetTop >= 0)
+			{
+				text.style.top = (text.offsetTop - hy) + 'px';
+				setTimeout(scrollUp, 10);
+			}
+			else
+				scrollDown();
+		}
+	</script>
+</head>
+<body onload="init()">
+	<h3 id="text">We don't need no education!</h3>
+</body>
+</html>

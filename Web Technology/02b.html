@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Shape</title>
+	<script type="text/javascript">
+		function encode()
+		{
+			var code = document.URL.split('=')[1];
+			var encode = '';
+			var inc = 1;
+			for(var i = 0; i < code.length; ++i)
+			{
+				var c = code[i];
+				var cc = code.charCodeAt(i);
+				var ccNew = cc + inc;
+				console.log(c, cc, ccNew, ccNew >= 'a'.charCodeAt(0));
+				if(ccNew > 'z'.charCodeAt(0))
+					c = String.fromCharCode(ccNew - 26);
+				else if(ccNew >= 'a'.charCodeAt(0))
+					c = String.fromCharCode(ccNew);
+				else if(ccNew > 'Z'.charCodeAt(0))
+					c = String.fromCharCode(ccNew - 26);
+				else
+					c = String.fromCharCode(ccNew);
+				encode += c;
+				inc += 1;
+			}
+			document.write(encode);
+		}
+	</script>
+</head>
+<body onload="encode()" />
+</html>
