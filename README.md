@@ -1,2 +1,1 @@
-# Web Technology Lab
-Questions included in the doc.
+# Web Lab Exam Solutions
