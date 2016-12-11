@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Student Details</title>
+		<script type="text/javascript">
+			function init()
+			{
+				usn = document.getElementById('usn');
+				ifr = document.getElementById('ifr');
+			}
+			function makeRequest()
+			{
+				ifr.src = 'fetchDetails.php?usn=' + usn.value;
+			}
+			function update(str)
+			{
+				console.log('hey');
+				data = str.split(';');
+				document.getElementById('nam').value = data[1];
+				document.getElementById('dept').value = data[2];
+				document.getElementById('gpa').value = data[3];
+			}
+		</script>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<td><label for="usn">USN</label></td>
+				<td><input type="text" id="usn" name="usn" onblur="makeRequest()"></td>
+			</tr>
+			<tr>
+				<td><label for="nam">Name</label></td>
+				<td><input type="text" id="nam" name="nam" readonly></td>
+			</tr>
+			<tr>
+				<td><label for="dept">Dept</label></td>
+				<td><input type="text" id="dept" name="dept" readonly></td>
+			</tr>
+			<tr>
+				<td><label for="gpa">GPA</label></td>
+				<td><input type="text" id="gpa" name="gpa" readonly></td>
+			</tr>
+		</table>
+		<iframe id="ifr" style="display: none;"></iframe>
+	</body>
+</html>

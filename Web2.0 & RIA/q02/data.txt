@@ -1,0 +1,3 @@
+91;Mohit;CS;9.4
+92;Surana;IS;9.8
+94;Mango;BT;9.5

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Multi Stage</title>
+	<script type="text/javascript">
+		function init()
+		{
+			divs = document.getElementsByTagName('div');
+			book = document.getElementById('isbn');
+			search = document.getElementById('search');
+			table = '';
+			for (var i = 1; i < divs.length; ++i)
+			{
+				load = document.createElement('img');
+				load.src = 'load.gif';
+				divs[i].appendChild(load);
+				setTimeout(fetch, i * 3000, i-1);
+			}
+		}
+		function fetch(i)
+		{
+			type = ['instruction', 'links', 'images'];
+			xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = update;
+			xhr.open('GET', "data.php?type=" + type[i], true);
+			xhr.send();
+		}
+		function update()
+		{
+			if (xhr.readyState == 4 && xhr.status == 200)
+			{
+				array = JSON.parse(xhr.responseText);
+				key = Object.keys(array)[0];
+				div = document.getElementById(key);
+				div.innerHTML = array[key];
+				xhr.abort();
+			}
+		}
+		function findBook()
+		{
+			if (table)
+				search.removeChild(table);
+			xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = showBook;
+			xhr.open('GET', "book.php?isbn=" + isbn.value, true);
+			xhr.send();
+		}
+		function showBook()
+		{
+			if (xhr.readyState == 4 && xhr.status == 200)
+			{
+				bookName = xhr.responseText;
+				if (bookName)
+				{
+					table = document.createElement('table');
+					search.appendChild(table);
+					tr = document.createElement('tr');
+					table.appendChild(tr);
+					th1 = document.createElement('th');
+					th2 = document.createElement('th');
+					tr.appendChild(th1);
+					tr.appendChild(th2);
+					th1.innerHTML = isbn.value;
+					th2.innerHTML = bookName;
+					// p = document.createElement('p');
+					// p.innerHTML = bookName;
+					// search.appendChild(p);
+				}
+				else
+				{
+					span = document.createElement('span');
+					search.appendChild(span);
+					span.innerHTML = 'Book not found!';
+				}
+			}
+		}
+	</script>
+</head>
+<body onload="init()">
+	<div id="search">
+		<label>ISBN: <input type="search" id="isbn" /></label>
+		<input type="button" value="Search" onclick="findBook()">
+	</div>
+	<div id="instruction">
+	</div>
+	<div id="links">
+	</div>
+	<div id="images">
+	</div>
+</body>
+</html>

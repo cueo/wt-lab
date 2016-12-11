@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Buy Sports Goods</title>
+	<style>
+		table
+		{
+			font-family: tahoma;
+			border-collapse: collapse;
+			width: 50%;
+		}
+
+		td, th
+		{
+			border: 1px solid black;
+			padding: 8px;
+		}
+		iframe
+		{
+			display: none;
+		}
+	</style>
+	<script type="text/javascript">
+		function init()
+		{
+			row = document.createElement('tr');
+			rado_cell = document.createElement('td');
+			rolex_cell = document.createElement('td');
+			row.appendChild(rado_cell);
+			row.appendChild(rolex_cell);
+			document.getElementById('product').appendChild(row);
+			strlen = 0;
+			refresh();
+		}
+		function refresh()
+		{
+			xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = update;
+			xhr.open('GET', 'monitor.php', true);
+			xhr.send();
+		}
+		function update()
+		{
+			if (xhr.readyState == 3 && xhr.status == 200)
+			{
+				str = xhr.responseText;
+				data = str.slice(strlen);		// important - data keeps getting appended for some reason, need to slice
+				rado = parseInt(data.split(';')[0].split(':')[1]);
+				rolex = parseInt(data.split(';')[1].split(':')[1]);
+				rado_cell.innerHTML = rado;
+				rolex_cell.innerHTML = rolex;
+				strlen = str.length;
+			}
+			else if (xhr.readyState == 4 && xhr.status == 200)
+			{
+				xhr.abort();
+				refresh();
+			}
+		}
+	</script>
+</head>
+<body onload="init()">
+	<table id="product">
+		<tr>
+			<th>Rado</th>
+			<th>Rolex</th>
+		</tr>
+	</table>
+	<br />
+	<form action="buy.php" method="post" target="ifr">
+		<select name="watch">
+			<option value="-1">Choose a product</option>
+			<option value="0">Rado</option>
+			<option value="1">Rolex</option>
+		</select>
+		<input type="submit" value="Buy" />
+	</form>
+	<iframe name="ifr"></iframe>
+</body>
+</html>
