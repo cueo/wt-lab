@@ -1,7 +1,7 @@
 # Web2.0 & RIA lab
 
 Program List for Web 2.0 & RIA Laboratory
------------------------------------------
+---
 	1) A Website provides for buying sports goods. The user can buy watches - Rado and Rolex or racquettes - Yonex or Wilson.
 	The products are limited edition and hence there is a <div> at the top of the page which displays
 	the total number of items available for each product. Since multiple users can access the website and buy products,
