@@ -54,3 +54,9 @@ Program List for Web 2.0 & RIA Laboratory
 	You need to show URL mapping using Apache’s configuration file.
 
 	10) Demonstrate the early and late send Submission Throttle AJAX pattern. Simulate Google’s Suggest feature for the late-send.
+
+Todo
+---
+	Exponential backoff
+	Database
+	xparser.js
