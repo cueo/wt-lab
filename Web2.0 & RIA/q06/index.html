@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>News Ticker</title>
+	<style type="text/css">
+		#outer
+		{
+			border-style: outset;
+			border-color: grey;
+			border-width: 2px 0px 2px 0px;
+			white-space: nowrap;
+			font-size: 2em;
+		}
+		#inner
+		{
+			position: relative;
+		}
+	</style>
+	<script src="script.js"></script>
+</head>
+<body onload="init()">
+	<h2>News Headlines</h2>
+	<div id="outer" onmouseover="stop()" onmouseout="scroll()">
+		<div id="inner">Breaking News... seems to be broken!</div>
+	</div>
+</body>
+</html>
