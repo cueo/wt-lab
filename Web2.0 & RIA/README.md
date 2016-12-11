@@ -1,5 +1,10 @@
 # Web2.0 & RIA lab
 
+Warning
+---
+Logic for question 1 and 4 is wrong and doesn't truly reflect periodic refresh, please refer: https://github.com/doodhwala/web2.0/tree/master/lab/lab%203.
+Will be updated in the near future.
+
 Program List for Web 2.0 & RIA Laboratory
 ---
 	1) A Website provides for buying sports goods. The user can buy watches - Rado and Rolex or racquettes - Yonex or Wilson.
