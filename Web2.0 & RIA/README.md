@@ -19,7 +19,7 @@ Program List for Web 2.0 & RIA Laboratory
 	The server side script can be trivial and return hard-coded values). Implement the functionality using hidden iframes.
 	Demonstrate the unique advantage of this technique.
 
-	3. A book-search web page served by localhost is rich in content and GUI.
+	3) A book-search web page served by localhost is rich in content and GUI.
 	It has multiple images to display, a search form for the front-end user to search for a book,
 	a set of links which might interest the user and also general information on how to use the site.
 	Use Multi-stage download pattern to demonstrate good user experience with this page.
