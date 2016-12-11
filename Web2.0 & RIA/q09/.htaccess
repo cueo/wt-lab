@@ -1,0 +1,5 @@
+DirectoryIndex index.html
+
+RewriteEngine On
+RewriteRule ^get/usn/([0-9]+) server.php?usn=$1
+RewriteRule ^update server.php

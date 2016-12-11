@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Submission Throttle</title>
+	<style type="text/css">
+		div
+		{
+			display: none;
+		}
+	</style>
+	<script type="text/javascript">
+		function init()
+		{
+			query = document.getElementById('movie');
+			div = document.getElementById('results');
+		}
+		function suggest()
+		{
+			div.style.display = 'none';
+			if (query.value)
+				setTimeout(fetch, 1000);
+		}
+		function fetch()
+		{
+			xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = update;
+			xhr.open('GET', 'movie.php?q=' + query.value, true);
+			xhr.send();
+		}
+		function update()
+		{
+			suggestions = xhr.responseText;
+			div.innerHTML = suggestions;
+			div.style.display = 'block';
+		}
+	</script>
+</head>
+<body onload="init()">
+	<label>Enter Movie Name: <input type="search" id="movie" onkeyup="suggest()" /></label>
+	<input type="button" value="Search" disabled />
+	<hr />
+	<div id="results"></div>
+</body>
+</html>
