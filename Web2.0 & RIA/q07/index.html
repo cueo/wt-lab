@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>News Ticker</title>
+	<style type="text/css">
+		div
+		{
+			border: solid;
+			border-radius: 5px;
+			font-size: 1.25em;
+			border-width: 1px 3px 3px 1px;
+			display: none;
+		}
+	</style>
+	<script src="script.js"></script>
+</head>
+<body onload="init()">
+	<input type="search" id="search" />
+	<input type="button" value="Search" onclick="search()" />
+	<hr />
+	<div id="feeds"></div>
+</body>
+</html>
