@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Buy Sports Goods</title>
+	<style>
+		table
+		{
+			font-family: tahoma;
+			border-collapse: collapse;
+			width: 50%;
+		}
+
+		td, th
+		{
+			border: 1px solid black;
+			padding: 8px;
+		}
+		iframe
+		{
+			display: none;
+		}
+	</style>
+	<script type="text/javascript">
+		function init()
+		{
+			wait = 0;
+			row = document.createElement('tr');
+			cell = [];
+			for (var i = 0; i < 4; i++)
+			{
+				cell[i] = document.createElement('td');
+				row.appendChild(cell[i]);
+			}
+			document.getElementById('counseling').appendChild(row);
+			strlen = 0;
+			refresh();
+		}
+		function refresh()
+		{
+			xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = update;
+			xhr.open('GET', 'monitor.php', true);
+			xhr.onerror = failure;		// not sure about exponential backoff
+			xhr.send();
+		}
+		function update()
+		{
+			if (xhr.readyState == 3 && xhr.status == 200)
+			{
+				str = xhr.responseText;
+				data = str.slice(strlen);		// important - data keeps getting appended for some reason, need to slice
+				seats = data.split(';');
+				for (var i = 0; i < 4; i++)
+				{
+					cell[i].innerHTML = seats[i];
+				}
+				strlen = str.length;
+			}
+			else if (xhr.readyState == 4 && xhr.status == 200)
+			{
+				xhr.abort();
+				refresh();
+			}
+		}
+		function failure()
+		{
+			xhr.abort();
+			wait += 1;
+			setTimeout(refresh, 2**wait);
+		}
+	</script>
+</head>
+<body onload="init()">
+	<table id="counseling">
+		<tr>
+			<th colspan="2">parseInt</th>
+			<th colspan="2">RVCE</th>
+		</tr>
+		<tr>
+			<th>CSE</th>
+			<th>ECE</th>
+			<th>CSE</th>
+			<th>ECE</th>
+		</tr>
+	</table>
+	<br />
+	<form action="updateSeats.php" method="post" target="ifr">
+		<select name="college">
+			<option value="-1">Choose a college</option>
+			<option value="0">PESIT</option>
+			<option value="1">RVCE</option>
+		</select>
+		<select name="stream">
+			<option value="-1">Choose a stream</option>
+			<option value="0">CSE</option>
+			<option value="1">EEE</option>
+		</select>
+		<input type="submit" value="Book" />
+	</form>
+	<iframe name="ifr"></iframe>
+</body>
+</html>
