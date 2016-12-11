@@ -9,6 +9,6 @@
 
 	$context = stream_context_create($fixit);
 
-	echo file_get_contents("https://www.bing.com/news?format=RSS", false, stream_context_create($fixit));
+	echo file_get_contents("https://news.google.com/news/feeds?output=rss", false, stream_context_create($fixit));
 	// echo file_get_contents("olympics.xml");
 ?>
